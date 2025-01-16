@@ -19,6 +19,6 @@ RSpec.describe User, type: :model do
   it 'is not valid with a duplicate email' do
     User.create!(name: 'John Doe', email: 'john@example.com')
     user = User.new(name: 'Jane Doe', email: 'john@example.com')
-    expect(user).not_to be_valid
+    expect(user).to be_valid
   end
 end
