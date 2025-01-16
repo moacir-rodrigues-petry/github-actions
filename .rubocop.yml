@@ -1,0 +1,34 @@
+# Define the target Ruby version
+AllCops:
+  TargetRubyVersion: 3.3
+  SuggestExtensions: false
+  NewCops: enable
+  Include:
+    - "app/**/*.rb"
+    - "spec/**/*.rb"
+  Exclude:
+    - "spec/fixtures/**/*"
+    - "spec/support/**/*"
+    - "spec/spec_helper.rb"
+    - "spec/rails_helper.rb"
+    - "bin/*"
+    - "app/mailers/application_mailer.rb"
+
+# Customizations for specific cops
+Layout/LineLength:
+  Max: 120
+
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*.rb"
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# Disable specific cops
+Metrics/MethodLength:
+  Enabled: false
+
+# Enable specific cops
+Style/Documentation:
+  Enabled: false
