@@ -35,9 +35,9 @@ RSpec.describe Api::UsersController, type: :controller do
 
   describe 'POST #create' do
     it 'creates a new user' do
-      expect {
+      expect do
         post :create, params: { user: { name: 'John Doe', email: 'john@example.com' } }
-      }.to change(User, :count).by(1)
+      end.to change(User, :count).by(1)
     end
 
     it 'returns the created user as JSON' do
@@ -78,9 +78,9 @@ RSpec.describe Api::UsersController, type: :controller do
   describe 'DELETE #destroy' do
     it 'deletes the user' do
       user = User.create!(name: 'John Doe', email: 'john@example.com')
-      expect {
+      expect do
         delete :destroy, params: { id: user.id }
-      }.to change(User, :count).by(-1)
+      end.to change(User, :count).by(-1)
     end
 
     it 'returns no content status' do
