@@ -1,0 +1,45 @@
+name: Run Tests and Check Coverage 🔎
+
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+    branches:
+      - "**"
+
+jobs:
+  test:
+    name: Run Tests and Check Coverage
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.3.0
+
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Set up database
+        run: |
+          bin/rails db:create db:schema:load
+
+      - name: Run tests with SimpleCov
+        run: |
+          bin/rails db:migrate RAILS_ENV=test
+          bundle exec rspec
+
+      - name: Check coverage
+        run: |
+          COVERAGE=$(bundle exec simplecov-console | grep -oP 'Coverage: \K[0-9.]+')
+          if (( $(echo "$COVERAGE < 95" | bc -l) )); then
+            echo "Code coverage ($COVERAGE%) is below the threshold of 95%."
+            exit 1
+          else
+            echo "Code coverage ($COVERAGE%) meets the threshold of 95%."
+          fi
