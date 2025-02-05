@@ -124,3 +124,5 @@ To fix the offenses automatically, run `rubocop -a`, be careful with this comman
 3. Push the changes to the repository and check the GitHub Actions tab.
 
 4. Simulate a failing test to see the GitHub Actions in action.
+
+5. Requesting a vulnerability workflow: `@workspace generate  a gh actions workflow to "Check for Dependency Vulnerabilities" using bundler-audit gem on every push`
