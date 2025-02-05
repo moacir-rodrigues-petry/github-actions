@@ -35,6 +35,11 @@ gem "bootsnap", require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
 # gem "rack-cors"
 
+# Force using this sidekiq version because it has vulnerabilities
+# Referece: https://rubysec.com/advisories/CVE-2023-26141/
+# Reference: https://nvd.nist.gov/vuln/detail/CVE-2023-26141
+gem 'sidekiq', '~> 7.0.9'
+
 group :development, :test do
   gem 'bundler-audit', require: false
   gem "debug", platforms: %i[ mri windows ]
