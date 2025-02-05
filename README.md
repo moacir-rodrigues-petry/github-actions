@@ -67,7 +67,7 @@ To fix the offenses automatically, run `rubocop -a`, be careful with this comman
 
 2. How can I run the rails server: `@terminal /explain how can I run the rails server using the rails command line`
 
-3. Where are the routes? `@terminal /explain where are located the routes/endpoints for ruby on rails application?`
+3. Where are the routes? `/explain where are located the routes/endpoints for ruby on rails application?`
 
 4. Creating the /api endpoint base path: `create the /api base endpoint path in config/routes.rb file`
 
@@ -119,7 +119,7 @@ To fix the offenses automatically, run `rubocop -a`, be careful with this comman
 
 1. Starting from basic: `@workspace Does GitHub Copilot has oficial integration with GitHub Actions?`
 
-2. How can I create a new workflow for Rubocop and Rspec? `@workspace Can you help me set up GitHub Actions for running RuboCop and RSpec tests in my project?`
+2. How can I create a new workflow for Rubocop and Rspec? `@workspace Can you help me set up two separate GitHub Actions workflows for running RuboCop and RSpec tests in my Ruby on Rails project? I want them both to trigger on every push and pull request to any branch.`
 
 3. Push the changes to the repository and check the GitHub Actions tab.
 
