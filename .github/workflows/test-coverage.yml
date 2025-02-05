@@ -1,4 +1,4 @@
-name: Run Tests and Check Coverage 🔎
+name: Run Tests and Check Coverage
 
 on:
   push:
@@ -33,7 +33,6 @@ jobs:
         run: |
           bin/rails db:migrate RAILS_ENV=test
           RESULT=$(bundle exec rspec)
-          echo "$RESULT"
 
       - name: Check coverage
         run: |
@@ -41,7 +40,13 @@ jobs:
           COVERAGE=$(echo "$RESULT" | sed -n 's/.*Line Coverage: \([0-9.]*\)%.*$/\1/p')
           if (( $(echo "$COVERAGE < 95" | bc -l) )); then
             echo "Code coverage ($COVERAGE%) is below the threshold of 95%."
-            exit 1
+            echo "::set-output name=job-status::failure"
           else
             echo "Code coverage ($COVERAGE%) meets the threshold of 95%."
+            echo "::set-output name=job-status::success"
           fi
+        id: check-coverage
+
+      - name: Fail job if coverage is below threshold
+        if: steps.check-coverage.outputs.job-status == 'failure'
+        run: exit 1
