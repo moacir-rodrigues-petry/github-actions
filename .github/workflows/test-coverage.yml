@@ -38,7 +38,7 @@ jobs:
       - name: Check coverage
         run: |
           # Extract coverage percentage from the rspec output
-          COVERAGE=$(echo "$RESULT" | grep -oP 'Coverage: \K[0-9.]+')
+          COVERAGE=$(echo "$RESULT" | sed -n 's/.*Line Coverage: \([0-9.]*\)%.*$/\1/p')
           if (( $(echo "$COVERAGE < 95" | bc -l) )); then
             echo "Code coverage ($COVERAGE%) is below the threshold of 95%."
             exit 1
