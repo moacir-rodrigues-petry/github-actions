@@ -32,11 +32,13 @@ jobs:
       - name: Run tests with SimpleCov
         run: |
           bin/rails db:migrate RAILS_ENV=test
-          bundle exec rspec
+          RESULT=$(bundle exec rspec)
+          echo "$RESULT"
 
       - name: Check coverage
         run: |
-          COVERAGE=$(bundle exec simplecov-console | grep -oP 'Coverage: \K[0-9.]+')
+          # Extract coverage percentage from the rspec output
+          COVERAGE=$(echo "$RESULT" | grep -oP 'Coverage: \K[0-9.]+')
           if (( $(echo "$COVERAGE < 95" | bc -l) )); then
             echo "Code coverage ($COVERAGE%) is below the threshold of 95%."
             exit 1
