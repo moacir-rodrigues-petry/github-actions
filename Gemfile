@@ -45,6 +45,7 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
   gem 'rspec-rails', '~> 7.0.0'
   gem 'rubocop', require: false
+  gem 'simplecov', require: false
 end
 
 group :development do
