@@ -13,6 +13,17 @@
 # it.
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+
+# SimpleCov is a code coverage analysis tool for Ruby.
+require 'simplecov'
+SimpleCov.start 'rails' do
+  # Exclude the channels folder
+  add_filter 'app/channels/'
+  add_filter 'app/jobs/'
+  add_filter 'app/mailers/'
+  add_filter 'app/controllers/application_controller.rb'
+end
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
