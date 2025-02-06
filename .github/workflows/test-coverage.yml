@@ -37,6 +37,8 @@ jobs:
 
       - name: Check coverage
         run: |
+          # Print the RESULT variable for debugging
+          echo "RSpec Result: $RESULT"
           # Extract coverage percentage from the rspec output
           COVERAGE=$(echo "$RESULT" | sed -n 's/.*Line Coverage: \([0-9.]*\)%.*$/\1/p')
           echo "Extracted Coverage: $COVERAGE%"
