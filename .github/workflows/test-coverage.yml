@@ -3,10 +3,10 @@ name: Run Tests and Check Coverage
 on:
   push:
     branches:
-      - "**"
+      - main
   pull_request:
     branches:
-      - "**"
+      - main
 
 jobs:
   test:
@@ -32,12 +32,15 @@ jobs:
       - name: Run tests with SimpleCov
         run: |
           bin/rails db:migrate RAILS_ENV=test
-          RESULT=$(bundle exec rspec)
-          echo "RSpec Result: $RESULT"
+          bundle exec rspec > result.txt
+          # RESULT=$(bundle exec rspec)
+          # echo "RSpec Result: $RESULT"
+          echo "RSpec Result written to result.txt"
 
       - name: Check coverage
         run: |
-          # Print the RESULT variable for debugging
+          # Read the result from the file
+          RESULT=$(cat result.txt)
           echo "RSpec Result: $RESULT"
           # Extract coverage percentage from the rspec output
           COVERAGE=$(echo "$RESULT" | sed -n 's/.*Line Coverage: \([0-9.]*\)%.*$/\1/p')
