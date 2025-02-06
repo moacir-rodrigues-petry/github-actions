@@ -1,4 +1,4 @@
-name: Run RuboCop 🤖
+name: 🤖 RuboCop
 
 on:
   push:

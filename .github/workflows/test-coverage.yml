@@ -1,4 +1,4 @@
-name: Run Tests and Check Coverage
+name: 📊 Test Coverage
 
 on:
   push:
@@ -33,15 +33,12 @@ jobs:
         run: |
           bin/rails db:migrate RAILS_ENV=test
           bundle exec rspec > result.txt
-          # RESULT=$(bundle exec rspec)
-          # echo "RSpec Result: $RESULT"
           echo "RSpec Result written to result.txt"
 
       - name: Check coverage
         run: |
           # Read the result from the file
           RESULT=$(cat result.txt)
-          echo "RSpec Result: $RESULT"
           # Extract coverage percentage from the rspec output
           COVERAGE=$(echo "$RESULT" | sed -n 's/.*Line Coverage: \([0-9.]*\)%.*$/\1/p')
           echo "Extracted Coverage: $COVERAGE%"

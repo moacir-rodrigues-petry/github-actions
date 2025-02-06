@@ -1,4 +1,4 @@
-name: Check for Dependency Vulnerabilities 🚨
+name: 🚨 Check for Dependency Vulnerabilities
 
 on:
   push:
