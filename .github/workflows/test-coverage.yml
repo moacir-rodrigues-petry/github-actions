@@ -39,14 +39,10 @@ jobs:
           # Extract coverage percentage from the rspec output
           COVERAGE=$(echo "$RESULT" | sed -n 's/.*Line Coverage: \([0-9.]*\)%.*$/\1/p')
           echo "Coverage: $COVERAGE%"
+          echo "$RESULT" | sed -n 's/.*Line Coverage: \([0-9.]*\)%.*$/\1/p'
           if (( $(echo "$COVERAGE < 95" | bc -l) )); then
             echo "Code coverage ($COVERAGE%) is below the threshold of 95%."
-            echo "job-status=failure" >> $GITHUB_ENV
+            exit 1
           else
             echo "Code coverage ($COVERAGE%) meets the threshold of 95%."
-            echo "job-status=success" >> $GITHUB_ENV
           fi
-
-      - name: Fail job if coverage is below threshold
-        if: ${{ env.job-status == 'failure' }}
-        run: exit 1
