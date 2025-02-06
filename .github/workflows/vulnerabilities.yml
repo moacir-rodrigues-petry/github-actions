@@ -1,15 +1,13 @@
-name: Run RuboCop 🤖
+name: 🚨 Check for Dependency Vulnerabilities
 
 on:
   push:
     branches:
-      - main
-  pull_request:
-    branches:
-      - main
+      - "**"
 
 jobs:
-  lint:
+  bundler-audit:
+    name: Run Bundler Audit
     runs-on: ubuntu-latest
 
     steps:
@@ -26,6 +24,6 @@ jobs:
           gem install bundler
           bundle install
 
-      - name: Run RuboCop
+      - name: Run Bundler Audit
         run: |
-          bundle exec rubocop
+          bundle exec bundler-audit check --update

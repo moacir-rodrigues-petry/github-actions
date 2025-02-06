@@ -126,3 +126,5 @@ To fix the offenses automatically, run `rubocop -a`, be careful with this comman
 4. Simulate a failing test to see the GitHub Actions in action.
 
 5. Requesting a vulnerability workflow: `@workspace generate  a gh actions workflow to "Check for Dependency Vulnerabilities" using bundler-audit gem on every push`
+
+6. Generating a threshold for simplecov: `@workspace Generate a GitHub Actions workflow for the SimpleCov, the workflow should include the step to get the code coverage reports, and enforce a minimum coverage threshold of 95%. The build should pass if the code coverage is greater than or equal to 95%. If the coverage falls below 95%, the workflow should fail.`

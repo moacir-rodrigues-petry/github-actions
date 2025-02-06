@@ -1,4 +1,4 @@
-name: Run RSpec tests 🔧
+name: 🔧 RSpec tests
 
 on:
   push:
