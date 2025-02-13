@@ -93,9 +93,13 @@ To fix the offenses automatically, run `rubocop -a`, be careful with this comman
 
 4. RSpec has a generator to create tests? `@workspace Does RSpec have a generator to create tests like user model?`
 
-5. Request to write some tests: `@workspace Can you write some tests for the user model?`
+5. Open the **app/models/user.rb** and "force" Copilot to add the validations: `@workspace Can you add some validations to the user model?`, try to seek something like `validates :name, presence: true` and `validates :email, presence: true, uniqueness: true`
 
-> **Note:** Select the **sapp/models/user.rb file**, when Copilot gives you the suggestion, click on **Apply in Editor** and **Accept Changes**.
+6. Select the **app/models/user.rb** and ask to Copilot Chat: `based on #file:user.rb, generate all the tests for it`
+
+7. Request to write some tests: `@workspace Can you write some tests for the user model?`
+
+> **Note:** Select the **app/models/user.rb file**, when Copilot gives you the suggestion, click on **Apply in Editor** and **Accept Changes**.
 
 6. Run the tests to validate it.
 
