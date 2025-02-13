@@ -73,11 +73,13 @@ To fix the offenses automatically, run `rubocop -a`, be careful with this comman
 
 5. How can I create a /api/users controller? `@terminal /explain how can I create a /api/users controller in ruby on rails?`
 
-6. How can I create a user model? `@terminal /explain how can I create a user model in ruby on rails?`
+6. Generate all the CRUD actions for the users controller: `in the #file:users_controller.rb file, generate all actions`
 
-7. What is the command to create users from terminal? `@terminal /explain what is the command to create users from terminal in ruby on rails?`
+7. How can I create a user model? `@terminal /explain how can I create a user model in ruby on rails?`
 
-8. How can I serializer or filtered the JSON fields to return? `how can I serializer or filtered the JSON fields to return in ruby on rails?`
+8. What is the command to create users from terminal? `@terminal /explain what is the command to create users from terminal in ruby on rails?`
+
+9. How can I serializer or filtered the JSON fields to return? `how can I serializer or filtered the JSON fields to return in ruby on rails?`
 
 ### Testing with RSpec 🛠️
 
