@@ -121,6 +121,46 @@ To fix the offenses automatically, run `rubocop -a`, be careful with this comman
 
 6. Requesting the autocorrect feature: `@workspace Can you run the Rubocop with the autocorrect feature?`
 
+### SimpleCov - Test Coverage 📊
+
+1. What is the recommendation Gem for code coverage in Ruby? `What Ruby gem is used for code coverage with test suites?`
+
+2. Setting up SimpleCov for Code Coverage with RSpec: `@workspace How do I integrate the SimpleCov gem to track code coverage with RSpec?`
+
+**Note:** Add just the code below for the first time running the tests with code coverage:
+
+Into the **spec/spec_helper.rb** file:
+
+```ruby
+# SimpleCov is a code coverage analysis tool for Ruby.
+require 'simplecov'
+SimpleCov.start 'rails'
+```
+
+2.1 Run the tests to validate the code coverage. Open the file **coverage/index.html** to see the code coverage.
+
+2.2 Copilot will suggest something like this into the **spec/spec_helper.rb** file:
+
+```ruby
+# SimpleCov is a code coverage analysis tool for Ruby.
+require 'simplecov'
+SimpleCov.start 'rails' do
+  # Exclude the channels folder
+  add_filter 'app/channels/'
+  add_filter 'app/jobs/'
+  add_filter 'app/mailers/'
+  add_filter 'app/controllers/application_controller.rb'
+end
+```
+
+2.3 Run again the tests to validate the code coverage. Look at the **coverage/index.html** file to see the code coverage.
+
+3. Requesting the best approach for achieving effective code coverage in test suites: `In software engineering, what is the recommended minimum code coverage threshold for testing, and what are the best practices for setting and maintaining it?`
+
+4. Add to .gitignore the coverage folder: `@workspace Can you add the coverage folder to the .gitignore file?`
+
+Or, grab the code from [A collection of useful .gitignore templates](https://github.com/github/gitignore)
+
 ### Get Started with GitHub Actions 🧪
 
 1. Starting from basic: `@workspace Does GitHub Copilot has oficial integration with GitHub Actions?`
