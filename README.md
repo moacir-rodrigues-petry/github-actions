@@ -61,6 +61,8 @@ To run Rubocop, run `rubocop` in the terminal.
 
 To fix the offenses automatically, run `rubocop -a`, be careful with this command, it will change your files.
 
+# Module 1: GitHub Copilot for Ruby on Rails Session
+
 ### <a id="getting-started"></a> Getting Started with Ruby on Rails 💎
 
 1. Create a rails api application: `@terminal /explain how can I create a ruby on rails api application using the rails command line, use users-api as the application name`
@@ -160,6 +162,8 @@ end
 4. Add to .gitignore the coverage folder: `@workspace Can you add the coverage folder to the .gitignore file?`
 
 Or, grab the code from [A collection of useful .gitignore templates](https://github.com/github/gitignore)
+
+# Module 2: GitHub Copilot for GitHub Actions Session
 
 ### Get Started with GitHub Actions 🧪
 
