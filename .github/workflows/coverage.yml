@@ -1,0 +1,30 @@
+name: Code Coverage
+
+on:
+  push:
+    branches: ["*"]
+  pull_request:
+    branches: ["*"]
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3.0"
+      - name: Install dependencies
+        run: bundle install
+      - name: Set up database
+        run: |
+          bundle exec rails db:create
+          bundle exec rails db:schema:load
+      - name: Run tests with coverage
+        run: |
+          bundle exec rspec
+          if [ "$(ruby -e 'require "json"; coverage = JSON.parse(File.read("coverage/.last_run.json")); print coverage["result"]["line"]')" -lt "95" ]; then
+            echo "Code coverage is below 95%"
+            exit 1
+          fi
