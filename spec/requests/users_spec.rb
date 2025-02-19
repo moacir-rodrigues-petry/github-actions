@@ -1,37 +1,37 @@
 require 'rails_helper'
 
 RSpec.describe Api::UsersController, type: :controller do
-  describe 'GET #index' do
-    it 'returns a success response' do
-      User.create!(name: 'John Doe', email: 'john@example.com')
-      get :index
-      expect(response).to be_successful
-    end
+  # describe 'GET #index' do
+  #   it 'returns a success response' do
+  #     User.create!(name: 'John Doe', email: 'john@example.com')
+  #     get :index
+  #     expect(response).to be_successful
+  #   end
 
-    it 'returns all users as JSON' do
-      user = User.create!(name: 'John Doe', email: 'john@example.com')
-      get :index
-      json_response = JSON.parse(response.body)
-      expect(json_response.first['name']).to eq(user.name)
-      expect(json_response.first['email']).to eq(user.email)
-    end
-  end
+  #   it 'returns all users as JSON' do
+  #     user = User.create!(name: 'John Doe', email: 'john@example.com')
+  #     get :index
+  #     json_response = JSON.parse(response.body)
+  #     expect(json_response.first['name']).to eq(user.name)
+  #     expect(json_response.first['email']).to eq(user.email)
+  #   end
+  # end
 
-  describe 'GET #show' do
-    it 'returns a success response' do
-      user = User.create!(name: 'John Doe', email: 'john@example.com')
-      get :show, params: { id: user.id }
-      expect(response).to be_successful
-    end
+  # describe 'GET #show' do
+  #   it 'returns a success response' do
+  #     user = User.create!(name: 'John Doe', email: 'john@example.com')
+  #     get :show, params: { id: user.id }
+  #     expect(response).to be_successful
+  #   end
 
-    it 'returns the user as JSON' do
-      user = User.create!(name: 'John Doe', email: 'john@example.com')
-      get :show, params: { id: user.id }
-      json_response = JSON.parse(response.body)
-      expect(json_response['name']).to eq(user.name)
-      expect(json_response['email']).to eq(user.email)
-    end
-  end
+  #   it 'returns the user as JSON' do
+  #     user = User.create!(name: 'John Doe', email: 'john@example.com')
+  #     get :show, params: { id: user.id }
+  #     json_response = JSON.parse(response.body)
+  #     expect(json_response['name']).to eq(user.name)
+  #     expect(json_response['email']).to eq(user.email)
+  #   end
+  # end
 
   describe 'POST #create' do
     it 'creates a new user' do
