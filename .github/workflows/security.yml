@@ -1,0 +1,19 @@
+name: Security Audit
+
+on:
+  push:
+    branches: ["*"]
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3.0"
+      - name: Install dependencies
+        run: bundle install
+      - name: Run bundler-audit
+        run: bundle exec bundle-audit check --update
