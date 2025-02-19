@@ -1,36 +1,25 @@
-name: 🔧 RSpec tests
+name: RSpec
 
 on:
   push:
-    branches:
-      - main
+    branches: ["*"]
   pull_request:
-    branches:
-      - main
+    branches: ["*"]
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
+      - uses: actions/checkout@v3
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.3.0
-
-      - name: Install dependencies
-        run: |
-          gem install bundler
-          bundle install
-
+          ruby-version: "3.3.0"
+          bundler-cache: true
       - name: Set up database
         run: |
-          bin/rails db:create db:schema:load
-
+          bundle exec rails db:create
+          bundle exec rails db:schema:load
       - name: Run RSpec
-        run: |
-          bin/rails db:migrate RAILS_ENV=test
-          bundle exec rspec
+        run: bundle exec rspec
