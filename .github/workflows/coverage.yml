@@ -1,30 +1,50 @@
-name: Code Coverage
+name: 📊 Test Coverage
 
 on:
   push:
-    branches: ["*"]
+    branches:
+      - main
   pull_request:
-    branches: ["*"]
+    branches:
+      - main
 
 jobs:
-  coverage:
+  test:
+    name: Run Tests and Check Coverage
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.3.0"
+          ruby-version: 3.3.0
+
       - name: Install dependencies
         run: bundle install
+
       - name: Set up database
         run: |
-          bundle exec rails db:create
-          bundle exec rails db:schema:load
-      - name: Run tests with coverage
+          bin/rails db:create db:schema:load
+
+      - name: Run tests with SimpleCov
         run: |
-          bundle exec rspec
-          if [ "$(ruby -e 'require "json"; coverage = JSON.parse(File.read("coverage/.last_run.json")); print coverage["result"]["line"]')" -lt "95" ]; then
-            echo "Code coverage is below 95%"
+          bin/rails db:migrate RAILS_ENV=test
+          bundle exec rspec > result.txt
+          echo "RSpec Result written to result.txt"
+
+      - name: Check coverage
+        run: |
+          # Read the result from the file
+          RESULT=$(cat result.txt)
+          # Extract coverage percentage from the rspec output
+          COVERAGE=$(echo "$RESULT" | sed -n 's/.*Line Coverage: \([0-9.]*\)%.*$/\1/p')
+          echo "Extracted Coverage: $COVERAGE%"
+          if (( $(echo "$COVERAGE < 95" | bc -l) )); then
+            echo "Code coverage ($COVERAGE%) is below the threshold of 95%."
             exit 1
+          else
+            echo "Code coverage ($COVERAGE%) meets the threshold of 95%."
           fi
